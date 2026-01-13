@@ -11,7 +11,8 @@ public class MyFirstTest {
         .when()
                 .get("https://videogamedb.uk/api/videogame")
         .then()
-                .log().all();
+                .log().all()
+                .statusCode(200);
 
     }
 }
