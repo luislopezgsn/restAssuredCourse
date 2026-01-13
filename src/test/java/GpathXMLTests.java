@@ -64,4 +64,28 @@ public class GpathXMLTests extends VideoGameConfig {
 
         System.out.println(videoGameName);
     }
+
+    @Test
+    public void getSingleElementDepthFirstSearch() {
+        String responseAsString = get(VideoGameEndpoints.ALL_VIDEO_GAMES).asString();
+
+        int reviewScore = XmlPath.from(responseAsString).getInt(
+                "**.find { it.name == 'Gran Turismo 3' }.reviewScore"
+        );
+
+        System.out.println(reviewScore);
+    }
+
+    @Test
+    public void getAllNodesBasedOnCondtion() {
+        String responseAsString = get(VideoGameEndpoints.ALL_VIDEO_GAMES).asString();
+
+        int reviewScore = 90;
+
+        List<Node> allVideoGamesOverCertainScore = XmlPath.from(responseAsString).get(
+                "List.item.findAll { it.reviewScore.toFloat() >= " + reviewScore + "}"
+        );
+
+        System.out.println(allVideoGamesOverCertainScore);
+    }
 }
