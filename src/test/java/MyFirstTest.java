@@ -1,17 +1,26 @@
+import config.VideoGameConfig;
+import config.VideoGameEndpoints;
 import org.junit.Test;
 
 import static io.restassured.RestAssured.*;
 
-public class MyFirstTest {
+public class MyFirstTest extends VideoGameConfig {
 
     @Test
     public void myFirstTest() {
         given()
                 .log().all()
         .when()
-                .get("https://videogamedb.uk/api/videogame")
+                .get("/videogame")
         .then()
-                .log().all();
+                .log().all()
+                .statusCode(200);
 
+    }
+
+    @Test
+    public void myFirstTestWithEndpoint() {
+        get(VideoGameEndpoints.ALL_VIDEO_GAMES)
+                .then().log().all();
     }
 }
