@@ -1,38 +1,43 @@
 package org.example;
 
 import org.example.endpoints.VideoGameEndpoints;
+import io.qameta.allure.*;
 import org.junit.Test;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasItem;
 
-public class VideoGameTests {
+@Epic("Video Game API Tests")
+@Feature("Video Game Search and Retrieval")
+public class VideoGameSearchTests {
+
+    VideoGameEndpoints endpoints = new VideoGameEndpoints();
 
     @Test
+    @Story("GET operations")
+    @Description("Verify that a single video game can be retrieved by its ID")
+    @Severity(SeverityLevel.BLOCKER)
     public void getSingleVideoGame() {
-        VideoGameEndpoints endpoints = new VideoGameEndpoints();
-        
         endpoints.getVideoGame("5")
                 .then()
-                .log().all()
                 .statusCode(200)
                 .body("name", equalTo("The Legend of Zelda: Ocarina of Time"));
     }
 
     @Test
+    @Story("GET operations")
+    @Description("Verify that video games can be filtered by category")
+    @Severity(SeverityLevel.CRITICAL)
     public void getVideoGamesByCategory() {
-        VideoGameEndpoints endpoints = new VideoGameEndpoints();
-
         endpoints.getVideoGamesByCategory("Driving")
                 .then()
-                .log().all()
                 .statusCode(200)
                 .body("name", hasItem("Gran Turismo 3"));
     }
 
     @Test
+    @Story("Data extraction")
+    @Description("Demonstrate data extraction from an API response")
     public void extractVideoGameData() {
-        VideoGameEndpoints endpoints = new VideoGameEndpoints();
-
         String gameName = endpoints.getAllVideoGames()
                 .then()
                 .extract()
