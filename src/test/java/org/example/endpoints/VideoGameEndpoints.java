@@ -21,4 +21,11 @@ public class VideoGameEndpoints {
                 .when()
                 .get("https://videogamedb.uk/api/videogame");
     }
+
+    public Response getAllVideoGames() {
+        return given()
+                .filter(new AllureRestAssured())
+                .when()
+                .get("https://videogamedb.uk/api/videogame");
+    }
 }

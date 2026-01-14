@@ -28,4 +28,16 @@ public class VideoGameTests {
                 .statusCode(200)
                 .body("name", hasItem("Gran Turismo 3"));
     }
+
+    @Test
+    public void extractVideoGameData() {
+        VideoGameEndpoints endpoints = new VideoGameEndpoints();
+
+        String gameName = endpoints.getAllVideoGames()
+                .then()
+                .extract()
+                .path("name[0]");
+
+        System.out.println("Extracted Game Name: " + gameName);
+    }
 }
