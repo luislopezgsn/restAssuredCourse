@@ -63,6 +63,22 @@
       <scope>test</scope>
     </dependency>
 
+    <!-- Visual Testing Dependencies -->
+    <dependency>
+      <groupId>com.microsoft.playwright</groupId>
+      <artifactId>playwright</artifactId>
+      <version>1.49.0</version>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>com.github.romankh3</groupId>
+      <artifactId>image-comparison</artifactId>
+      <version>4.4.0</version>
+      <scope>test</scope>
+    </dependency>
+
+
   </dependencies>
 
   <build>
