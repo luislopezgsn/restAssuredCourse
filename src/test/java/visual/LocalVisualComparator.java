@@ -3,7 +3,9 @@ package visual;
 import com.github.romankh3.image.comparison.ImageComparison;
 import com.github.romankh3.image.comparison.model.ImageComparisonResult;
 import com.github.romankh3.image.comparison.model.ImageComparisonState;
-import org.junit.Assert;
+import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
 import org.junit.Test;
 
 import javax.imageio.ImageIO;
@@ -14,9 +16,12 @@ import java.io.File;
  * Local utility to compare existing screenshots and highlight differences.
  * This simulates the 'Comparison' phase of a visual test.
  */
+@Epic("Visual Regression Testing")
+@Feature("Local Baseline Comparison")
 public class LocalVisualComparator {
 
     @Test
+    @Description("Compare the local baseline image against the current 'actual' screenshot without launching a browser")
     public void compareScreenshots() throws Exception {
         String baselinePath = "src/test/resources/baselines/swagger-ui-baseline.png";
         String actualPath = "target/visual-results/actual/swagger-ui-actual.png";
