@@ -4,6 +4,9 @@ import com.github.romankh3.image.comparison.ImageComparison;
 import com.github.romankh3.image.comparison.model.ImageComparisonResult;
 import com.github.romankh3.image.comparison.model.ImageComparisonState;
 import com.microsoft.playwright.*;
+import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
 import org.junit.*;
 
 import javax.imageio.ImageIO;
@@ -14,6 +17,8 @@ import java.nio.file.Paths;
 /**
  * Visual Test class to ensure the Swagger UI documentation remains consistent.
  */
+@Epic("Visual Regression Testing")
+@Feature("Documentation UI")
 public class VisualDocumentationTest {
 
     static Playwright playwright;
@@ -36,6 +41,7 @@ public class VisualDocumentationTest {
     }
 
     @Test
+    @Description("Compare current Swagger UI against the baseline using a live browser")
     public void testSwaggerUIVisual() throws Exception {
         Page page = context.newPage();
         page.navigate("https://videogamedb.uk/");
